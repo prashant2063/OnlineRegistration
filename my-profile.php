@@ -118,7 +118,7 @@ while($row=mysqli_fetch_array($sql))
   
   <div class="form-group">
     <label for="permanentaddress">Permanent Address</label>
-    <input type="text" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address"/>
+    <input type="text" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address" />
   </div>
   
   <div class="form-group">

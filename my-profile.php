@@ -12,9 +12,12 @@ if(isset($_POST['submit']))
 {
 $studentname=$_POST['studentname'];
 $photo=$_FILES["photo"]["name"];
+$guardianname=$_POST['guardianname'];
 $cgpa=$_POST['cgpa'];
+$permanentaddress=$_POST['permanentaddress'];
+$correspondenceaddress=$_POST['correspondenceaddress'];
 move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
-$ret=mysqli_query($con,"update students set studentName='$studentname',studentPhoto='$photo'  where StudentRegNo='".$_SESSION['login']."'");
+$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
 if($ret)
 {
 $_SESSION['msg']="Student Record updated Successfully !!";
@@ -96,6 +99,11 @@ while($row=mysqli_fetch_array($sql))
     
   </div>
 
+  <div class="form-group">
+    <label for="guardianname">Father/Guardian Name   </label>
+    <input type="text" class="form-control" id="guardianname" name="guardianname" value="<?php echo htmlentities($row['guardianName']);?>"  placeholder="Father/Guardian Name"/>
+    
+  </div>
 
 <div class="form-group">
     <label for="CGPA">CGPA  </label>
@@ -107,6 +115,16 @@ while($row=mysqli_fetch_array($sql))
     <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>" />
   </div>
   <?php } ?>
+  
+  <div class="form-group">
+    <label for="permanentaddress">Permanent Address</label>
+    <input type="text" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address"/>
+  </div>
+  
+  <div class="form-group">
+    <label for="correspondenceaddress">Correspondence Address</label>
+    <input type="text" class="form-control" id="correspondenceaddress" name="correspondenceaddress" value="<?php echo htmlentities($row['correspondenceAddress']);?>"  placeholder="Correspondence Address"/>
+  </div>
 
  <button type="submit" name="submit" id="submit" class="btn btn-default">Update</button>
 </form>

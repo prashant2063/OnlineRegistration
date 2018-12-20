@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Dec 13, 2018 at 06:03 AM
+-- Generation Time: Dec 20, 2018 at 10:07 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -125,13 +125,12 @@ CREATE TABLE `courseenroll` (
 INSERT INTO `courseenroll` (`id`, `studentRegNo`, `session`, `department`, `semester`, `courseCode`, `courseName`, `receipt`, `applyFor`, `enrollDate`) VALUES
 (256, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'First', 'CSS-112', 'Physics for Computer Engineers', 'Screenshot (14).png', 'regular', '2018-12-12 17:05:44'),
 (257, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'First', 'CSD-113', 'Computer Fundamentals and Programming', 'Screenshot (14).png', 'regular', '2018-12-12 17:05:44'),
-(271, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'First', 'CSS-111', 'Engineering Mathematics-1', 'Screenshot (10).png', 'regular', '2018-12-12 18:26:14'),
-(272, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'First', 'CSS-121', 'Engineering Mathematics-2', 'Screenshot (10).png', 'regular', '2018-12-12 18:26:14'),
-(273, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'First', 'CSS-112', 'Physics for Computer Engineers', 'page_1.jpg', 'supplementary', '2018-12-12 19:00:02'),
-(274, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CS-700', 'Artificial Intelligence', 'page_2.jpg', 'regular', '2018-12-12 19:04:26'),
-(275, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-410', 'Information Security', 'page_2.jpg', 'regular', '2018-12-12 19:04:26'),
-(276, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-411', 'Advanced Computer Architecture', 'page_2.jpg', 'regular', '2018-12-12 19:04:26'),
-(277, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-412', 'Advanced Operating System', 'page_2.jpg', 'regular', '2018-12-12 19:04:26');
+(278, '15mi542', '2019-Odd', 'Computer Science and Engineering', 'Seventh', 'CS-700', 'Artificial Intelligence', 'newlogo.png', 'regular', '2018-12-13 06:13:11'),
+(279, '15mi542', '2019-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-410', 'Information Security', 'newlogo.png', 'regular', '2018-12-13 06:13:12'),
+(280, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-410', 'Information Security', 'nit.jpg', 'regular', '2018-12-13 06:57:07'),
+(281, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-412', 'Advanced Operating System', 'nit.jpg', 'regular', '2018-12-13 06:57:07'),
+(282, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-410', 'Information Security', 'page_1.jpg', 'regular', '2018-12-13 17:00:53'),
+(283, '15mi542', '2018-Odd', 'Computer Science and Engineering', 'Seventh', 'CSD-411', 'Advanced Computer Architecture', 'page_1.jpg', 'regular', '2018-12-13 17:00:53');
 
 -- --------------------------------------------------------
 
@@ -207,7 +206,8 @@ CREATE TABLE `session` (
 INSERT INTO `session` (`id`, `session`, `creationDate`) VALUES
 (31, '2018-Odd', '2018-12-09 19:39:29'),
 (33, '2019-Odd', '2018-12-10 09:38:39'),
-(34, '2019-Even', '2018-12-12 08:40:47');
+(34, '2019-Even', '2018-12-12 08:40:47'),
+(36, '2018-Even', '2018-12-13 16:55:27');
 
 -- --------------------------------------------------------
 
@@ -218,10 +218,13 @@ INSERT INTO `session` (`id`, `session`, `creationDate`) VALUES
 CREATE TABLE `students` (
   `studentRegNo` varchar(255) NOT NULL,
   `studentName` varchar(255) NOT NULL,
+  `guardianName` varchar(255) NOT NULL,
   `password` varchar(255) NOT NULL,
   `studentPhoto` varchar(255) DEFAULT NULL,
   `department` varchar(255) NOT NULL,
   `cgpa` decimal(10,2) NOT NULL,
+  `permanentAddress` varchar(512) NOT NULL,
+  `correspondenceAddress` varchar(512) NOT NULL,
   `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -229,9 +232,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`studentRegNo`, `studentName`, `password`, `studentPhoto`, `department`, `cgpa`, `creationDate`) VALUES
-('15mi530', 'Raj Rahi', '202cb962ac59075b964b07152d234b70', 'Screenshot (4).png', 'Computer Science and Engineering', '0.00', '2018-12-12 17:59:37'),
-('15mi542', 'Prashant Gupta', '827ccb0eea8a706c4c34a16891f84e7b', 'avatar-1.jpg.png', 'Computer Science and Engineering', '0.00', '2018-12-09 17:33:07');
+INSERT INTO `students` (`studentRegNo`, `studentName`, `guardianName`, `password`, `studentPhoto`, `department`, `cgpa`, `permanentAddress`, `correspondenceAddress`, `creationDate`) VALUES
+('15mi542', 'Prashant Gupta', 'Deepali Gupta', '827ccb0eea8a706c4c34a16891f84e7b', 'IMG_20170610_131247_562.jpg', 'Computer Science and Engineering', '0.00', '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '2018-12-09 17:33:07');
 
 -- --------------------------------------------------------
 
@@ -281,7 +283,13 @@ INSERT INTO `userlog` (`id`, `studentRegno`, `userip`, `loginTime`, `logout`, `s
 (89, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-12 18:06:48', '12-12-2018 11:57:30 PM', 1),
 (90, '15mi530', 0x3a3a3100000000000000000000000000, '2018-12-12 18:27:37', '12-12-2018 11:57:43 PM', 1),
 (91, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-12 18:49:43', '', 1),
-(92, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-13 04:44:44', '13-12-2018 10:17:45 AM', 1);
+(92, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-13 04:44:44', '13-12-2018 10:17:45 AM', 1),
+(93, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-13 05:28:49', '', 1),
+(94, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-13 06:11:10', '13-12-2018 12:37:11 PM', 1),
+(95, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-13 16:58:46', '', 1),
+(96, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-19 08:23:38', '19-12-2018 01:54:17 PM', 1),
+(97, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-19 08:24:24', '', 1),
+(98, '15mi542', 0x3a3a3100000000000000000000000000, '2018-12-20 08:42:12', '', 1);
 
 --
 -- Indexes for dumped tables
@@ -367,7 +375,7 @@ ALTER TABLE `course`
 -- AUTO_INCREMENT for table `courseenroll`
 --
 ALTER TABLE `courseenroll`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=284;
 
 --
 -- AUTO_INCREMENT for table `department`
@@ -385,13 +393,13 @@ ALTER TABLE `semester`
 -- AUTO_INCREMENT for table `session`
 --
 ALTER TABLE `session`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=37;
 
 --
 -- AUTO_INCREMENT for table `userlog`
 --
 ALTER TABLE `userlog`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=99;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

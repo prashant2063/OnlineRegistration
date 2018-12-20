@@ -7,7 +7,6 @@ if(strlen($_SESSION['login'])==0)
 header('location:index.php');
 }
 else{
-
 if(isset($_POST['submit']))
 {
 $studentname=$_POST['studentname'];
@@ -114,7 +113,7 @@ while($row=mysqli_fetch_array($sql))
     <label for="uploadPhoto">Upload New Photo  </label>
     <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>" />
   </div>
-  <?php } ?>
+
   
   <div class="form-group">
     <label for="permanentaddress">Permanent Address</label>
@@ -124,8 +123,9 @@ while($row=mysqli_fetch_array($sql))
   <div class="form-group">
     <label for="correspondenceaddress">Correspondence Address</label>
     <input type="text" class="form-control" id="correspondenceaddress" name="correspondenceaddress" value="<?php echo htmlentities($row['correspondenceAddress']);?>"  placeholder="Correspondence Address"/>
-  </div>
 
+  </div>
+  <?php } ?>
  <button type="submit" name="submit" id="submit" class="btn btn-default">Update</button>
 </form>
                             </div>

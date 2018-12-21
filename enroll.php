@@ -47,10 +47,10 @@ $cnt=1;
 while($row=mysqli_fetch_array($sql))
 { ?>
 <div class="form-group">
-    <label for="studentPhoto">Student Photo  </label>
+    <label for="studentPhoto"></label>
    <?php if($row['studentPhoto']==""){ ?>
-   <img src="studentphoto/noimage.png" width="200" height="200"><?php } else {?>
-   <img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
+   <center><img src="studentphoto/noimage.png" width="200" height="200"></center><?php } else {?>
+   <center><img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200"></center>
    <?php } ?>
   </div>
 

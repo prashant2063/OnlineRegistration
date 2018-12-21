@@ -1,4 +1,4 @@
-<?php
+  <?php
 session_start();
 include('includes/config.php');
 error_reporting(0);
@@ -58,7 +58,7 @@ else
 		$row=mysqli_fetch_array($sql);?>
 		<p style="font-size:30px;margin-bottom:0px;padding-bottom:0px;">
 		<?php echo htmlentities($row['studentName']);?><p>
-                        <h1 style="margin-top:0px;padding-top:0px;" class="page-head-line"></h1> 
+                        <h1 style="margin-top:0px;padding-top:0px;" class="page-head-line" ></h1>
                     </div>
                 </div>
                 <div class="row" >
@@ -68,10 +68,10 @@ $cnt=1;
 while($row=mysqli_fetch_array($sql))
 { ?>
 <div class="form-group">
-    <label for="studentPhoto">Student Photo  </label>
+    <center><label for="studentPhoto"></label></center>
    <?php if($row['studentPhoto']==""){ ?>
-   <img src="studentphoto/noimage.png" width="200" height="200"><?php } else {?>
-   <img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
+   <center><img src="studentphoto/noimage.png" width="200" height="200" ></center><?php } else {?>
+   <center><img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200" ></center>
    <?php } ?>
   </div>
 
@@ -82,7 +82,7 @@ while($row=mysqli_fetch_array($sql))
                         <div class="panel-heading">
                           Student Profile
                         </div>
-<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
+<center><font color="green" align="right"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font></center>
 
 
                         <div class="panel-body">
@@ -111,22 +111,21 @@ while($row=mysqli_fetch_array($sql))
 
 <div class="form-group">
     <label for="uploadPhoto">Upload New Photo  </label>
-    <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>" />
+    <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>"  />
   </div>
 
-  
-  <div class="form-group">
-    <label for="permanentaddress">Permanent Address</label>
-    <input type="text" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address" />
-  </div>
-  
-  <div class="form-group">
+ <div class="form-group">
     <label for="correspondenceaddress">Correspondence Address</label>
     <input type="text" class="form-control" id="correspondenceaddress" name="correspondenceaddress" value="<?php echo htmlentities($row['correspondenceAddress']);?>"  placeholder="Correspondence Address"/>
 
   </div>
+
+<div class="form-group">
+    <label for="permanentaddress">Permanent Address</label>
+    <input type="text;checkbox" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address" />
+  </div>
   <?php } ?>
- <button type="submit" name="submit" id="submit" class="btn btn-default">Update</button>
+ <center><button type="submit" name="submit" id="submit" class="btn btn-default" >Update</button></center>
 </form>
                             </div>
                             </div>

@@ -1,30 +1,31 @@
 <?php
-session_start();
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-    {   
-header('location:index.php');
-}
-else{
-
-if(isset($_POST['submit']))
-{
-  $applyfor=$_POST['applyfor'];
-$ret=mysqli_query($con,"insert into applyfor(applyfor) values('$applyfor')");
-if($ret)
-{
-$_SESSION['msg']="Applying for field Created Successfully !!";
-}
-else
-{
-  $_SESSION['msg']="Error : Field not created";
-}
-}
-if(isset($_GET['del']))
-      {
-              mysqli_query($con,"delete from applyfor where id = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Field deleted !!";
-      }
+	session_start();
+	include('includes/config.php');
+	if(strlen($_SESSION['alogin'])==0){   
+		header('location:index.php');
+	}
+	else{
+		if(isset($_POST['submit'])){
+			$applyfor=$_POST['applyfor'];
+			$chk=mysqli_query($con,"select applyfor from applyfor where applyfor='$applyfor';");
+			if(!mysqli_fetch_array($chk)){
+				$ret=mysqli_query($con,"insert into applyfor(applyfor) values('$applyfor')");
+				if($ret){
+					$_SESSION['msg']="Applying for field Created Successfully !!";
+				}
+				else{
+					$_SESSION['msg']="Error : Field not created";
+				}
+			}
+			else{
+				$_SESSION['msg']="Apply for field already exists";
+			}
+		}
+		if(isset($_GET['del']))
+		{
+			mysqli_query($con,"delete from applyfor where id = '".$_GET['id']."'");
+			$_SESSION['delmsg']="Field deleted!!!";
+		}
 ?>
 
 <!DOCTYPE html>
@@ -59,12 +60,11 @@ if(isset($_GET['del']))
                 <div class="row" >
                   <div class="col-md-3"></div>
                     <div class="col-md-6">
+					<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
                         <div class="panel panel-default">
                         <div class="panel-heading">
                           Create New Field
                         </div>
-<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
-
 
                         <div class="panel-body">
                        <form name="applyfor" method="post">
@@ -79,9 +79,10 @@ if(isset($_GET['del']))
                     </div>
                   
                 </div>
-                <font color="red" align="center"><?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?></font>
+               
                 <div class="col-md-12">
-                    <!--    Bordered Table  -->
+<font color="red" align="center"><?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?></font>               
+			   <!--    Bordered Table  -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Manage field

@@ -41,6 +41,17 @@ else
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
+<script>
+  function copy(){
+    if(ch.checked==true)
+    {
+      document.getElementById('permanentaddress').value=document.getElementById('correspondenceaddress').value;
+    }
+    else 
+      document.getElementById('permanentaddress').value='';
+  }
+</script>
+
 <body>
 <?php include('includes/header.php');?>
     <!-- LOGO HEADER END-->
@@ -120,9 +131,13 @@ while($row=mysqli_fetch_array($sql))
 
   </div>
 
+
 <div class="form-group">
     <label for="permanentaddress">Permanent Address</label>
-    <input type="text;checkbox" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address" />
+      <div class="col-md-0">
+      <input type="checkbox" name="checkbox" onclick="copy()" id="ch" fontsize="100%"/>  Same as Correspondence Address
+      </div>
+    <input type="text" class="form-control" id="permanentaddress" name="permanentaddress" value="<?php echo htmlentities($row['permanentAddress']);?>"  placeholder="Permanent Address" /> 
   </div>
   <?php } ?>
  <center><button type="submit" name="submit" id="submit" class="btn btn-default" >Update</button></center>

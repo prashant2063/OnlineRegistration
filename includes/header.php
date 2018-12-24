@@ -4,23 +4,30 @@ error_reporting(0);
 ?>
 <?php if($_SESSION['login']!="")
 {?>
+     <style>
+    .container{
+    style="text-align: center;"
+}
+</style>
 <header>
-        <div class="container">
-            <div class="row">
-                <div class="col-md-12">
+   
+  
+                <div class="container">
                     <strong>Welcome: </strong><?php echo htmlentities($_SESSION['sname']); ?>
                     &nbsp;&nbsp;
                     
-
-
-                    <strong>Last Login:<?php 
+                    <strong>Last Login: </strong><?php 
         $ret=mysqli_query($con,"SELECT  * from userlog where studentRegno='".$_SESSION['login']."' order by id desc limit 1,1");
                     $row=mysqli_fetch_array($ret);
-                    echo $row['userip']; ?> at <?php echo $row['loginTime'];?></strong>
-                </div>
+                    echo $row['userip']; ?> at <?php echo $row['loginTime'];?>
+                    <a href="http://accounts.google.com" target="_blank">Webmail</a>
+                    |
+                    <a href="http://nith.ac.in/td/index.html" target="_blank">Directory</a>
+                    | Contact Us: 01972-254011
 
-            </div>
-        </div>
+                </div>
+          
+        
     </header>
     <?php } ?>
     <!-- HEADER END-->
@@ -28,7 +35,7 @@ error_reporting(0);
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
 			<div class="navbar-header">
-				<a href="#" style="color:#FFF; font-size: 40px;">
+				<a href="http://www.nith.ac.in" style="color:#FFF; font-size: 40px;">
                    	<img style="width: 70%; padding: 10px 0" src="studentphoto/newlogo.png"> 
                 </a>
 			</div>

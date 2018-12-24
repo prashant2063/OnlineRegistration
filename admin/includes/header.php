@@ -28,7 +28,7 @@ include("includes/config.php");
     <div class="navbar navbar-inverse set-radius-zero">
         <div class="container">
 			<div class="navbar-header">
-				<a href="#" style="color:#FFF; font-size: 40px;">
+				<a href="http://www.nith.ac.in" style="color:#FFF; font-size: 40px;">
                    	<img style="width: 70%; padding: 10px 0" src="studentphoto/newlogo.png"> 
                 </a>
 			</div>

@@ -6,9 +6,6 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -22,18 +19,17 @@ else{
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
-	<style>
-		.receipt_photu {
-		  border: 1px solid #ddd;
-		  border-radius: 4px;
-		  padding: 5px;
-		  width: 35px;
-		}
-
-		.receipt_photu:hover {
-		  box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
-		}
-	</style>
+    <style>
+        .receipt_photu {
+          border: 1px solid #ddd;
+          border-radius: 4px;
+          padding: 5px;
+          width: 35px;
+        }
+        .receipt_photu:hover {
+          box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
+        }
+    </style>
 </head>
 
 <body>
@@ -68,14 +64,14 @@ else{
                                         <tr>
                                             <th>#</th>
                                                     <th>Reg no </th>
-													<th>Apply For </th>
+                                                    <th>Apply For </th>
                                             <th>Course Name </th>
                                             <th>Session </th>
                                             <th>Department </th>
                                             <th>Semester</th>
-											<th>Receipt</th>
+                                            <th>Receipt</th>
                                             <th>Enrollment Date</th>
-											 
+                                             
                                              <!--th>Action</th-->
                                         </tr>
                                     </thead>
@@ -92,24 +88,22 @@ while($row=mysqli_fetch_array($sql))
                                             <td><?php echo $cnt;?></td>
                                             
                                             <td><?php echo htmlentities($row['studentRegNo']);?></td>
-											<td><?php echo htmlentities($row['applyfor']);?></td>
+                                            <td><?php echo htmlentities($row['applyfor']);?></td>
                                             <td><?php echo htmlentities($row['courseName']);?></td>
-											<td><?php echo htmlentities($row['session']);?></td>
+                                            <td><?php echo htmlentities($row['session']);?></td>
                                             <td><?php echo htmlentities($row['department']);?></td>
                                           
                                             <td><?php echo htmlentities($row['semester']);?></td>
-											<td>
-												<a target="_blank" href="../receipt/<?php echo htmlentities($row['receipt']);?>">
-													<img class="receipt_photu" src="../receipt/<?php echo htmlentities($row['receipt']);?>">
-												</a>                                        
+                                            <td>
+                                                <a target="_blank" href="../receipt/<?php echo htmlentities($row['receipt']);?>">
+                                                    <img class="receipt_photu" src="../receipt/<?php echo htmlentities($row['receipt']);?>">
+                                                </a>                                        
                                             </td>
                                             <td><?php echo htmlentities($row['enrollDate']);?></td>
-											
+                                            
                                             <!--td>
                                             <a href="print.php?id=<?php echo $row['cid']?>" target="_blank">
 <button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>                                        
-
-
                                             </td-->
                                         </tr>
 <?php 

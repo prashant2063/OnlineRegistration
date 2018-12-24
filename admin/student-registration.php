@@ -1,28 +1,23 @@
 <?php
-session_start();
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-    {   
-header('location:index.php');
-}
-else{
-
-if(isset($_POST['submit']))
-{
-$studentname=$_POST['studentname'];
-$studentregno=$_POST['studentregno'];
-$password=md5($_POST['password']);
-$department=$_POST['department'];
-$ret=mysqli_query($con,"insert into students(StudentRegNo,studentName,password,department) values('$studentregno','$studentname','$password','$department')");
-if($ret)
-{
-$_SESSION['msg']="Student Registered Successfully !!";
-}
-else
-{
-  $_SESSION['msg']="Error : Student  not Registered";
-}
-}
+	session_start();
+	include('includes/config.php');
+	if(strlen($_SESSION['alogin'])==0){   
+		header('location:index.php');
+	}
+	else{
+		if(isset($_POST['submit'])){
+			$studentname=$_POST['studentname'];
+			$studentregno=$_POST['studentregno'];
+			$password=md5($_POST['password']);
+			$department=$_POST['department'];
+			$ret=mysqli_query($con,"insert into students(StudentRegNo,studentName,password,department) values('$studentregno','$studentname','$password','$department')");
+			if($ret){
+				$_SESSION['msg']="Student Registered Successfully !!";
+			}
+			else{
+				$_SESSION['msg']="Error : Student  not Registered";
+			}
+		}
 ?>
 
 <!DOCTYPE html>
@@ -57,11 +52,12 @@ else
                 <div class="row" >
                   <div class="col-md-3"></div>
                     <div class="col-md-6">
+					<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
                         <div class="panel panel-default">
                         <div class="panel-heading">
                           Student Registration
                         </div>
-<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
+
 
 
                         <div class="panel-body">

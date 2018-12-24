@@ -1,36 +1,39 @@
 <?php
-session_start();
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-    {   
-header('location:index.php');
-}
-else{
-$id=intval($_GET['id']);
-date_default_timezone_set('Asia/Kolkata');// change according timezone
-$currentTime = date( 'Y-m-d h:i:s', time () );
-if(isset($_POST['submit']))
-{
-$coursecode=$_POST['coursecode'];
-$coursename=$_POST['coursename'];
-$lecture =$_POST ['lecture'];
-$tutorial=$_POST ['tutorial'];
-$practical=$_POST ['practical'];
-$credit=$_POST['credit'];
-$seatlimit=$_POST['seatlimit'];
-$department=$_POST['department'];
-$semester=$_POST['semester'];
-$courseType=$_POST ['courseType'];
-$ret=mysqli_query($con,"update course set courseCode='$coursecode',courseName='$coursename',lecture='$lecture',tutorial='$tutorial',practical='$practical',credit='$credit',noofseats='$seatlimit',department='$department',semester='$semester',courseType='$courseType',creationDate='$currentTime' where id='$id'");
-if($ret)
-{
-$_SESSION['msg']="Course Updated Successfully !!";
-}
-else
-{
-  $_SESSION['msg']="Error : Course not Updated";
-}
-}
+	session_start();
+	include('includes/config.php');
+	if(strlen($_SESSION['alogin'])==0){   
+		header('location:index.php');
+	}
+	else{
+		$id=intval($_GET['id']);
+		date_default_timezone_set('Asia/Kolkata');// change according timezone
+		$currentTime = date( 'Y-m-d h:i:s', time () );
+		if(isset($_POST['submit'])){
+			$coursecode=$_POST['coursecode'];
+			$coursename=$_POST['coursename'];
+			$lecture =$_POST ['lecture'];
+			$tutorial=$_POST ['tutorial'];
+			$practical=$_POST ['practical'];
+			$credit=$_POST['credit'];
+			$seatlimit=$_POST['seatlimit'];
+			$department=$_POST['department'];
+			$semester=$_POST['semester'];
+			$courseType=$_POST ['courseType'];
+			$chk=mysqli_query($con,"select * from course where courseCode='$coursecode' and courseName='$coursename' and department='$department' and semester='$semester' and courseType='$courseType'");
+			$num=mysqli_fetch_array($chk);
+			if(!$num){
+				$ret=mysqli_query($con,"update course set courseCode='$coursecode',courseName='$coursename',lecture='$lecture',tutorial='$tutorial',practical='$practical',credit='$credit',noofseats='$seatlimit',department='$department',semester='$semester',courseType='$courseType',creationDate='$currentTime' where id='$id'");
+				if($ret){
+					$_SESSION['msg']="Course Updated Successfully !!";
+				}
+				else{
+					$_SESSION['msg']="Error : Course not Updated";
+				}
+			}
+			else{
+				$_SESSION['msg']="Course not updated. Already exists";
+			}
+		}
 ?>
 
 <!DOCTYPE html>
@@ -65,11 +68,12 @@ else
                 <div class="row" >
                   <div class="col-md-3"></div>
                     <div class="col-md-6">
+					<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
                         <div class="panel panel-default">
                         <div class="panel-heading">
                            Course 
                         </div>
-<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
+
 
 
                         <div class="panel-body">

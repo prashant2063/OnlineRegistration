@@ -6,6 +6,7 @@ if(strlen($_SESSION['alogin'])==0)
 header('location:index.php');
 }
 else{
+
 ?>
 
 <!DOCTYPE html>
@@ -48,6 +49,7 @@ else{
                         <h1 class="page-head-line">Enroll History  </h1>
                     </div>
                 </div>
+          
                 <div class="row" >
             
                 <div class="col-md-12">
@@ -56,6 +58,8 @@ else{
                         <div class="panel-heading">
                            Enroll History
                         </div>
+
+
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive table-bordered">
@@ -111,6 +115,8 @@ $cnt++;
 } ?>               
                                     </tbody>
                                 </table>
+
+
                             </div>
                         </div>
                     </div>
@@ -124,6 +130,43 @@ $cnt++;
 
         </div>
     </div>
+            <?php
+            $sql = "SELECT * FROM member ";
+
+            if (isset($_POST['search'])) {
+
+                $search_term = mysql_real_escape_string($_POST['search-box']);
+
+                $sql .= "WHERE MB_COUNTY = '{$search_term}' ";
+            }
+
+            $query = mysql_query($sql) or die(mysql_error());
+            ?>
+
+            <form name="search_form" method="POST" action="stockists.php">
+            Search: <input type="text" name="search_box" value=" "/>
+            <input type="submit" name="search" value="Search the stockists...">
+            </form>
+
+            <table width="70%" cellpadding="5" cellspace="5">
+
+            <tr>
+                <td><strong>Company Name</strong></td>
+                <td><strong>Website</strong></td>
+                <td><strong>Phone</strong></td>
+                <td><strong>Address</strong></td>
+            </tr>
+
+            <?php while ($row = mysql_fetch_array($query)) {?>
+            <tr>
+                <td><?php echo $row['MB_COMPANY'];?></td>
+                <td><?php echo $row['MB_MOBILE'];?></td>
+                <td><?php echo $row['MB_PHONE'];?></td>
+                <td><?php echo $row['MB_COUNTY'];?></td>
+            </tr>
+
+            <?php } ?>
+            </table>
     <!-- CONTENT-WRAPPER SECTION END-->
   <?php include('includes/footer.php');?>
     <!-- FOOTER SECTION END-->

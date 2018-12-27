@@ -223,6 +223,8 @@ CREATE TABLE `students` (
   `studentPhoto` varchar(255) DEFAULT NULL,
   `department` varchar(255) NOT NULL,
   `cgpa` decimal(10,2) NOT NULL,
+  `studentMobile` varchar(255) NOT NULL,
+  `studentEmail` varchar(255) NOT NULL,
   `permanentAddress` varchar(512) NOT NULL,
   `correspondenceAddress` varchar(512) NOT NULL,
   `creationDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
@@ -232,8 +234,8 @@ CREATE TABLE `students` (
 -- Dumping data for table `students`
 --
 
-INSERT INTO `students` (`studentRegNo`, `studentName`, `guardianName`, `password`, `studentPhoto`, `department`, `cgpa`, `permanentAddress`, `correspondenceAddress`, `creationDate`) VALUES
-('15mi542', 'Prashant Gupta', 'Deepali Gupta', '827ccb0eea8a706c4c34a16891f84e7b', 'IMG_20170610_131247_562.jpg', 'Computer Science and Engineering', '0.00', '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '2018-12-09 17:33:07');
+INSERT INTO `students` (`studentRegNo`, `studentName`, `guardianName`, `password`, `studentPhoto`, `department`, `cgpa`,`studentMobile`,`studentEmail`, `permanentAddress`, `correspondenceAddress`, `creationDate`) VALUES
+('15mi542', 'Prashant Gupta', 'Deepali Gupta', '827ccb0eea8a706c4c34a16891f84e7b', 'IMG_20170610_131247_562.jpg', 'Computer Science and Engineering', '0.00', '8091642060' ,'prashant2063@gmail.com' , '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '107/11 VPO Purana Bazar, Teh. Sundernagar, Distt. Mandi, (H.P.), PIN-175019', '2018-12-09 17:33:07');
 
 -- --------------------------------------------------------
 

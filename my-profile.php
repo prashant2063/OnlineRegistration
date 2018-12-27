@@ -13,17 +13,20 @@ $studentname=$_POST['studentname'];
 $photo=$_FILES["photo"]["name"];
 $guardianname=$_POST['guardianname'];
 $cgpa=$_POST['cgpa'];
+$studentmobile=$_POST['studentmobile'];
+$studentemail=$_POST['studentemail'];
 $permanentaddress=$_POST['permanentaddress'];
 $correspondenceaddress=$_POST['correspondenceaddress'];
+
 if($photo!=""){
 	$ret=mysqli_query($con,"select studentPhoto from students where StudentRegNo='".$_SESSION['login']."';");
 	$row=mysqli_fetch_array($ret);
 	unlink("studentphoto/".$row[studentPhoto]);
 	move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
-	$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
+	$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', studentEmail='$studentemail', studentMobile='$studentmobile', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
 }
 else{
-		$ret=mysqli_query($con,"update students set guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
+		$ret=mysqli_query($con,"update students set guardianName='$guardianname',studentEmail='$studentemail', studentMobile='$studentmobile', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
 }
 if($ret)
 {
@@ -131,6 +134,16 @@ while($row=mysqli_fetch_array($sql))
 <div class="form-group">
     <label for="uploadPhoto">Upload New Photo  </label>
     <input type="file" class="form-control" id="photo" name="photo"  value="<?php echo htmlentities($row['studentPhoto']);?>"  />
+  </div>
+
+  <div class="form-group">
+    <label for="studentmobile">Mobile No. </label>
+    <input type="text" class="form-control" id="studentmobile" name="studentmobile" value="<?php echo htmlentities($row['studentMobile']);?>" placeholder="Mobile No." />
+  </div>
+
+  <div class="form-group">
+    <label for="studentemail">Email ID </label>
+    <input type="text" class="form-control" id="studentemail" name="studentemail" value="<?php echo htmlentities($row['studentEmail']);?>" placeholder="Email" />
   </div>
 
  <div class="form-group">

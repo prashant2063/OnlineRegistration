@@ -1,14 +1,10 @@
 <?php
-session_start();
-include('includes/config.php');
-if(strlen($_SESSION['alogin'])==0)
-    {   
-header('location:index.php');
-}
-else{
-
-
-
+	session_start();
+	include('includes/config.php');
+	if(strlen($_SESSION['alogin'])==0){   
+		header('location:index.php');
+	}
+	else{
 ?>
 
 <!DOCTYPE html>
@@ -18,7 +14,7 @@ else{
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1" />
     <meta name="description" content="" />
     <meta name="author" content="" />
-    <title>Enroll History</title>
+    <title>User Logs</title>
     <link href="assets/css/bootstrap.css" rel="stylesheet" />
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
@@ -37,7 +33,7 @@ else{
         <div class="container">
               <div class="row">
                     <div class="col-md-12">
-                        <h1 class="page-head-line">Enroll History  </h1>
+                        <h1 class="page-head-line">Login History  </h1>
                     </div>
                 </div>
                 <div class="row" >
@@ -46,7 +42,7 @@ else{
                     <!--    Bordered Table  -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
-                           Enroll History
+                           User Logs
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -56,18 +52,18 @@ else{
                                         <tr>
                                             <th>#</th>
                                                 
-                                                    <th>Student Reg no </th>
+                                            <th>Student Reg no </th>
                                             <th>IP  </th>
                                             <th>Login Time </th>
                                             
-                                                <th>Logout Time</th>
+                                            <th>Logout Time</th>
                                              <th>Status</th>
                                     
                                         </tr>
                                     </thead>
                                     <tbody>
 <?php
-$sql=mysqli_query($con,"select * from userlog");
+$sql=mysqli_query($con,"select * from userlog order by loginTime desc;");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {
@@ -76,7 +72,7 @@ while($row=mysqli_fetch_array($sql))
 
                                         <tr>
                                             <td><?php echo $cnt;?></td>
-                                              <td><?php echo htmlentities($row['studentRegno']);?></td>
+                                            <td><?php echo htmlentities($row['studentRegno']);?></td>
                                             <td><?php echo htmlentities($row['userip']);?></td>
                                             <td><?php echo htmlentities($row['loginTime']);?></td>
                                             <td><?php echo htmlentities($row['logout']);?></td>

@@ -17,7 +17,7 @@ error_reporting(0);
                     &nbsp;&nbsp;
                     
                     <strong>Last Login: </strong><?php 
-        $ret=mysqli_query($con,"SELECT  * from userlog where studentRegno='".$_SESSION['login']."' order by id desc limit 1,1");
+					$ret=mysqli_query($con,"SELECT  * from userlog where studentRegno='".$_SESSION['login']."' order by id desc limit 1,1");
                     $row=mysqli_fetch_array($ret);
                     echo $row['userip']; ?> at <?php echo $row['loginTime'];?>
                     <a href="http://accounts.google.com" target="_blank">Webmail</a>

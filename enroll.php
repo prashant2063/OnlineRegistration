@@ -65,10 +65,6 @@ while($row=mysqli_fetch_array($sql))
                         <div class="panel-heading">
                           Course Enroll
                         </div>
-
-<font color="green" align="center"><?php echo htmlentities($_SESSION['msg']);?><?php echo htmlentities($_SESSION['msg']="");?></font>
-
-
                         <div class="panel-body">
 						
                        <form action="availaible-course.php" name="dept" method="post" enctype="multipart/form-data">
@@ -100,6 +96,12 @@ while($row1=mysqli_fetch_array($sql))
   </div>
 
   <div class="form-group">
+    <label for="Department">Department  </label>
+    <input type="text" class="form-control" id="department" name="department" value="<?php echo htmlentities($row['department']);?>"  placeholder="Department" readonly />
+  </div> 
+  
+  
+  <div class="form-group">
     <label for="uploadPhoto">Upload Fee Receipt  </label>
     <input type="file" class="form-control" id="photo" name="receipt"  value="<?php echo htmlentities($row['receipt'])?>" />
   </div>
@@ -117,23 +119,6 @@ while($row=mysqli_fetch_array($sql))
 {
 ?>
 <option value="<?php echo htmlentities($row['session']);?>"><?php echo htmlentities($row['session']);?></option>
-<?php } ?>
-
-    </select> 
-  </div> 
-
-
-
-<div class="form-group">
-    <label for="Department">Department  </label>
-    <select class="form-control" name="department" required="required">
-   <option value="">Select Depertment</option>   
-   <?php 
-$sql=mysqli_query($con,"select * from department");
-while($row=mysqli_fetch_array($sql))
-{
-?>
-<option value="<?php echo htmlentities($row['department']);?>"><?php echo htmlentities($row['department']);?></option>
 <?php } ?>
 
     </select> 

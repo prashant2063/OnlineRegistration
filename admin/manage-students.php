@@ -12,13 +12,16 @@ else{
 
 if(isset($_GET['del']))
       {
-              mysqli_query($con,"delete from students where studentRegNo = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Student record deleted !!";
+			$ret=mysqli_query($con,"select studentPhoto from students where StudentRegNo='".$_GET['id']."'");
+			$row=mysqli_fetch_array($ret);
+			unlink("../studentphoto/".$row[studentPhoto]);	
+            mysqli_query($con,"delete from students where studentRegNo = '".$_GET['id']."'");
+            $_SESSION['delmsg']="Student record deleted !!";
       }
 
      if(isset($_GET['pass']))
       {
-        $password="Test@123";
+        $password="12345678";
         $newpass=md5($password);
               mysqli_query($con,"update students set password='$newpass' where studentRegNo = '".$_GET['id']."'");
                   $_SESSION['delmsg']="Password Reset. New Password is Test@123";
@@ -56,9 +59,10 @@ if(isset($_GET['del']))
                 </div>
                 <div class="row" >
                  
-                <font color="red" align="center"><?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?></font>
+                
                 <div class="col-md-12">
-                    <!--    Bordered Table  -->
+					<font color="red" align="center"><?php echo htmlentities($_SESSION['delmsg']);?><?php echo htmlentities($_SESSION['delmsg']="");?></font>
+				 <!--    Bordered Table  -->
                     <div class="panel panel-default">
                         <div class="panel-heading">
                             Manage Students

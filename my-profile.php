@@ -15,8 +15,16 @@ $guardianname=$_POST['guardianname'];
 $cgpa=$_POST['cgpa'];
 $permanentaddress=$_POST['permanentaddress'];
 $correspondenceaddress=$_POST['correspondenceaddress'];
-move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
-$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
+if($photo!=""){
+	$ret=mysqli_query($con,"select studentPhoto from students where StudentRegNo='".$_SESSION['login']."';");
+	$row=mysqli_fetch_array($ret);
+	unlink("studentphoto/".$row[studentPhoto]);
+	move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
+	$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
+}
+else{
+		$ret=mysqli_query($con,"update students set guardianName='$guardianname', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
+}
 if($ret)
 {
 $_SESSION['msg']="Student Record updated Successfully !!";

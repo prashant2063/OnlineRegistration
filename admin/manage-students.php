@@ -12,8 +12,11 @@ else{
 
 if(isset($_GET['del']))
       {
-              mysqli_query($con,"delete from students where studentRegNo = '".$_GET['id']."'");
-                  $_SESSION['delmsg']="Student record deleted !!";
+			$ret=mysqli_query($con,"select studentPhoto from students where StudentRegNo='".$_GET['id']."'");
+			$row=mysqli_fetch_array($ret);
+			unlink("../studentphoto/".$row[studentPhoto]);	
+            mysqli_query($con,"delete from students where studentRegNo = '".$_GET['id']."'");
+            $_SESSION['delmsg']="Student record deleted !!";
       }
 
      if(isset($_GET['pass']))

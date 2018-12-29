@@ -8,6 +8,9 @@
 		$query=mysqli_query($con,"SELECT * FROM students WHERE StudentRegno='$regno' and password='$password'");
 		$num=mysqli_fetch_array($query);
 		if($num>0){
+
+            $_SESSION['start']=time();
+            $_SESSION['expire']=$_SESSION['start']+(60);
 			$extra="my-profile.php";
 			$_SESSION['login']=$_POST['regno'];
 			$_SESSION['id']=$num['studentRegno'];

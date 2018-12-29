@@ -7,6 +7,7 @@ if(strlen($_SESSION['alogin'])==0 or strlen($_SESSION['pcode'])==0)
 header('location:index.php');
 }
 else{
+  
 
 if(isset($_POST['submit']))
 {

@@ -39,6 +39,13 @@ else{
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
+<?php
+function myFunction() {
+    
+ echo "hello"; 
+}?>
+
+
 <body>
 <?php include('includes/header.php');?>
     <!-- LOGO HEADER END-->
@@ -56,6 +63,7 @@ else{
                     </div>
                 </div>
                 <div class="row" >
+
             
                 <div class="col-md-12">
                     <!--    Bordered Table  -->
@@ -107,12 +115,21 @@ while($row=mysqli_fetch_array($sql))
 $cnt++;
 } ?>
 
+
                                         
                                     </tbody>
                                 </table>
+
                             </div>
+
+
                         </div>
+
                     </div>
+                    <form>
+<button onclick="myFunction()">Print this page</button>
+</form>
+
                      <!--  End  Bordered Table  -->
                 </div>
             </div>

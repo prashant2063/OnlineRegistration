@@ -56,6 +56,7 @@ else{
                     </div>
                 </div>
                 <div class="row" >
+
             
                 <div class="col-md-12">
                     <!--    Bordered Table  -->
@@ -107,11 +108,16 @@ while($row=mysqli_fetch_array($sql))
 $cnt++;
 } ?>
 
+
                                         
                                     </tbody>
                                 </table>
+
                             </div>
+
+
                         </div>
+
                     </div>
                      <!--  End  Bordered Table  -->
                 </div>

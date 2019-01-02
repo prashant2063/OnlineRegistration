@@ -38,7 +38,7 @@
 		if($select_one=="student_wise"){
 			//echo "student wise";
 			//echo $select_two;
-			$sql=mysqli_query($con,"select studentRegNo, courseCode, courseName, session, semester from courseenroll where studentRegNo='$select_two' and applyfor='$enrollment_type' order by session,semester;");
+			$sql=mysqli_query($con,"select studentRegNo, courseenroll.courseCode, courseenroll.courseName, lecture, tutorial, practical, credit, session, courseenroll.semester from courseenroll left join course on courseenroll.courseCode=course.courseCode where studentRegNo='$select_two' and applyfor='$enrollment_type' order by session,semester;");
 			if(mysqli_num_rows($sql) > 0){
 				$row=mysqli_fetch_array($sql);
 				$current_session=$row['session'];
@@ -53,6 +53,10 @@
 						<th>#</th>
 						<th>Course Code</th>
 						<th>Course Name</th>
+						<th>Lecture</th>
+						<th>Tutorial</th>
+						<th>Practical</th>
+						<th>Credit</th>
 					</tr>
 				</thead>
 				<tbody>
@@ -60,6 +64,10 @@
 							<td><?php echo $cnt;?></td>
 							<td><?php echo $row['courseCode'];?></td>
 							<td><?php echo $row['courseName'];?></td>
+							<td><?php echo $row['lecture'];?></td>
+							<td><?php echo $row['tutorial'];?></td>
+							<td><?php echo $row['practical'];?></td>
+							<td><?php echo $row['credit'];?></td>
 				</tr>
 		<?php
 				$cnt++;
@@ -70,6 +78,10 @@
 							<td><?php echo $cnt;?></td>
 							<td><?php echo $row['courseCode'];?></td>
 							<td><?php echo $row['courseName'];?></td>
+							<td><?php echo $row['lecture'];?></td>
+							<td><?php echo $row['tutorial'];?></td>
+							<td><?php echo $row['practical'];?></td>
+							<td><?php echo $row['credit'];?></td>
 						</tr>			
 		<?php
 					}
@@ -90,6 +102,10 @@
 							<th>#</th>
 							<th>Course Code</th>
 							<th>Course Name</th>
+							<th>Lecture</th>
+							<th>Tutorial</th>
+							<th>Practical</th>
+							<th>Credit</th>
 						</tr>
 				</thead>
 				<tbody>
@@ -97,6 +113,10 @@
 							<td><?php echo $cnt;?></td>
 							<td><?php echo $row['courseCode'];?></td>
 							<td><?php echo $row['courseName'];?></td>
+							<td><?php echo $row['lecture'];?></td>
+							<td><?php echo $row['tutorial'];?></td>
+							<td><?php echo $row['practical'];?></td>
+							<td><?php echo $row['credit'];?></td>
 					</tr>			
 		<?php
 					}

@@ -19,7 +19,7 @@
 		<?php
 			$enrollment_type=$_GET['enrollment_type'];
 			//echo $enrollment_type;
-			$sql=mysqli_query($con,"select studentRegNo, courseCode, courseName, session, semester from courseenroll where studentRegNo='".$_SESSION['login']."' and applyfor='$enrollment_type' order by session,semester;");
+			$sql=mysqli_query($con,"select studentRegNo, courseenroll.courseCode, courseenroll.courseName, lecture, tutorial, practical, credit, session, courseenroll.semester from courseenroll left join course on courseenroll.courseCode=course.courseCode where studentRegNo='$select_two' and applyfor='$enrollment_type' order by session,semester;");
 			if(mysqli_num_rows($sql) > 0){$row=mysqli_fetch_array($sql);
 				$current_session=$row['session'];
 				$current_semester=$row['semester'];

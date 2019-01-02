@@ -55,12 +55,11 @@ else{
                     </div>
                 </div>
                 <div class="row" >
-				
                 <div class="col-md-12">
 					<div class="form-group">
 									<select class="form-control" name="select_two" id="enrollment_type" onChange="get_table()" required="required">
 										<option value="regular">Regular</option>
-										<option value="suplementary">Supplymentary</option>
+										<option value="supplementary">Supplyrmentary</option>
 										<option value="improvement">Improvement</option>
 									</select> 
 					</div>
@@ -114,11 +113,16 @@ while($row=mysqli_fetch_array($sql))
 $cnt++;
 } ?>
 
+
                                         
                                     </tbody>
                                 </table>
+
                             </div>
+
+
                         </div>
+
                     </div>
                      <!--  End  Bordered Table  -->
                 </div>

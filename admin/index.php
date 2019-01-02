@@ -69,22 +69,8 @@ exit();
                 </form>
                 <div class="col-md-6">
                     <div class="alert alert-info">
-This is Major Project-1 (CSD-419) based on Online Student Registration and this is made by Anvesh Anand(15MI552), Gautam Poddar(15MI532), Raj Rahi(15MI530), Prashant Gupta(15MI542) and Pramod Singh(15MI547) Under the guidance of Dr.Siddhartha Chauhan of CSE Department, NIT HAMIRPUR                        <br />
-                         <strong> Platforms Used are given below :</strong>
-                        <ul>
-                            <li>
-                                Apache Server
-                            </li>
-                            <li>
-                                PHP
-                            </li>
-                            <li>
-                                Java Script
-                            </li>
-                            <li>
-                                HTML
-                            </li>
-                        </ul>
+Online Registration Application is a web-accessible secured website that delivers both related and unrelated applications, services and links. It provides data in an easily understandable format, modify or manipulate the data and communicate with institute or individuals about the data.<br>It is developed by Prashant Gupta (15MI542) and Arzoo (15MI524) under the guidance of Dr. Siddhartha Chouhan of CSE Department, NIT HAMIRPUR.<br>
+                        
                        
                     </div>
                                     </div>

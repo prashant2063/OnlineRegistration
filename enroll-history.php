@@ -9,7 +9,6 @@ header('location:index.php');
 else{
     $now=time();
 	if($now > $_SESSION['expire']){
-    
     date_default_timezone_set('Asia/Kolkata');
     $ldate = date( 'Y-m-d h:i:s', time () );
     $status=0;
@@ -56,17 +55,25 @@ else{
                     </div>
                 </div>
                 <div class="row" >
-            
+				
                 <div class="col-md-12">
+					<div class="form-group">
+									<select class="form-control" name="select_two" id="enrollment_type" onChange="get_table()" required="required">
+										<option value="regular">Regular</option>
+										<option value="suplementary">Supplymentary</option>
+										<option value="improvement">Improvement</option>
+									</select> 
+					</div>
                     <!--    Bordered Table  -->
                     <div class="panel panel-default">
+					
                         <div class="panel-heading">
                            Enroll History
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
                             <div class="table-responsive table-bordered">
-                                <table class="table">
+                                <table class="table" id="my_table">
                                     <thead>
                                         <tr>
                                             <th>#</th>
@@ -131,6 +138,18 @@ $cnt++;
     <script src="assets/js/jquery-1.11.1.js"></script>
     <!-- BOOTSTRAP SCRIPTS  -->
     <script src="assets/js/bootstrap.js"></script>
+	<script type="text/javascript">
+			function get_table(){
+				//alert(document.getElementById("select_two_dd").value);
+				var xmlhttp=new XMLHttpRequest();
+				xmlhttp.open("GET","get_table_data.php?enrollment_type="+document.getElementById("enrollment_type").value,false);
+				//alert(document.getElementById("select_one").value);
+				xmlhttp.send(null);
+				document.getElementById("my_table").innerHTML=xmlhttp.responseText;
+				//alert(xmlhttp.responseText);
+			}
+			
+		</script>
 </body>
 </html>
 <?php } ?>

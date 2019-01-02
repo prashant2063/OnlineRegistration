@@ -39,75 +39,82 @@
 			//echo "student wise";
 			//echo $select_two;
 			$sql=mysqli_query($con,"select studentRegNo, courseCode, courseName, session, semester from courseenroll where studentRegNo='$select_two' and applyfor='$enrollment_type' order by session,semester;");
-			$row=mysqli_fetch_array($sql);
-			$current_session=$row['session'];
-			$current_semester=$row['semester'];
-			$cnt=1;
-			echo "Semester: ".$current_semester;	echo "Session: ".$current_session;
-	?>
-			<?php ?>
-			<table class="table">
-			<thead>		
-				<tr>
-					<th>#</th>
-					<th>Course Code</th>
-					<th>Course Name</th>
-				</tr>
-			</thead>
-			<tbody>
-			<tr>
-						<td><?php echo $cnt;?></td>
-						<td><?php echo $row['courseCode'];?></td>
-						<td><?php echo $row['courseName'];?></td>
-			</tr>
-	<?php
-			$cnt++;
-			while($row=mysqli_fetch_array($sql)){
-				if($current_session==$row['session'] AND $current_semester==$row['semester']){
-	?>
-					<tr>
-						<td><?php echo $cnt;?></td>
-						<td><?php echo $row['courseCode'];?></td>
-						<td><?php echo $row['courseName'];?></td>
-					</tr>			
-	<?php
-				}
-				else{
-	?>
-			</tbody>
-			</table>
-	<?php 
-					$cnt=1;
-					$current_session=$row['session'];
-					$current_semester=$row['semester'];
-					echo "Semester: ".$current_semester;	
-					echo "Session: ".$current_session;
-	?>
-			<table class="table">
-			<thead>
+			if(mysqli_num_rows($sql) > 0){
+				$row=mysqli_fetch_array($sql);
+				$current_session=$row['session'];
+				$current_semester=$row['semester'];
+				$cnt=1;
+				echo "Semester: ".$current_semester;	echo "Session: ".$current_session;
+		?>
+				<?php ?>
+				<table class="table">
+				<thead>		
 					<tr>
 						<th>#</th>
 						<th>Course Code</th>
 						<th>Course Name</th>
 					</tr>
-			</thead>
-			<tbody>
+				</thead>
+				<tbody>
 				<tr>
-						<td><?php echo $cnt;?></td>
-						<td><?php echo $row['courseCode'];?></td>
-						<td><?php echo $row['courseName'];?></td>
-				</tr>			
-	<?php
-				}
+							<td><?php echo $cnt;?></td>
+							<td><?php echo $row['courseCode'];?></td>
+							<td><?php echo $row['courseName'];?></td>
+				</tr>
+		<?php
 				$cnt++;
-			}
-	?>
-			</tbody>
-			</table>
+				while($row=mysqli_fetch_array($sql)){
+					if($current_session==$row['session'] AND $current_semester==$row['semester']){
+		?>
+						<tr>
+							<td><?php echo $cnt;?></td>
+							<td><?php echo $row['courseCode'];?></td>
+							<td><?php echo $row['courseName'];?></td>
+						</tr>			
+		<?php
+					}
+					else{
+		?>
+				</tbody>
+				</table>
+		<?php 
+						$cnt=1;
+						$current_session=$row['session'];
+						$current_semester=$row['semester'];
+						echo "Semester: ".$current_semester;	
+						echo "Session: ".$current_session;
+		?>
+				<table class="table">
+				<thead>
+						<tr>
+							<th>#</th>
+							<th>Course Code</th>
+							<th>Course Name</th>
+						</tr>
+				</thead>
+				<tbody>
+					<tr>
+							<td><?php echo $cnt;?></td>
+							<td><?php echo $row['courseCode'];?></td>
+							<td><?php echo $row['courseName'];?></td>
+					</tr>			
+		<?php
+					}
+					$cnt++;
+				}
+		?>
+				</tbody>
+				</table>
 	<?php
+			}
+			else{
+				echo "No Records Found";
+			}
 		}
 		if($select_one=="course_wise"){
 			//echo "course wise";
+			$sql=mysqli_query($con,"select studentRegNo from courseenroll where courseCode='$select_two' and applyfor='$enrollment_type' order by studentRegNo;");
+			if(mysqli_num_rows($sql) > 0){
 	?>
 			<table class="table">
 				<thead>
@@ -118,7 +125,7 @@
 				</thead>
 				<tbody>
 					<?php
-						$sql=mysqli_query($con,"select studentRegNo from courseenroll where courseCode='$select_two' and applyfor='$enrollment_type';");
+						
 						$cnt=1;
 						while($row=mysqli_fetch_array($sql)){
 							//echo $cnt;
@@ -134,11 +141,17 @@
 			</table>
 
 		<?php
+			}
+			else{
+				echo "No Records Found";
+			}
 		}
 		if($select_one=="department_wise"){
 			//echo "department wise";
 			//table comes here
-		?>
+			$sql=mysqli_query($con,"select studentRegNo, courseCode, semester,session from courseenroll where department='$select_two' and applyfor='$enrollment_type' order by studentRegNo,session,semester,courseCode;");
+			if(mysqli_num_rows($sql) > 0){
+			?>
 			<table class="table">
 				<thead>
 					<tr>
@@ -150,8 +163,7 @@
 					</tr>
 				</thead>
 				<tbody>
-						<?php
-						$sql=mysqli_query($con,"select studentRegNo, courseCode, semester,session from courseenroll where department='$select_two' and applyfor='$enrollment_type' order by studentRegNo,session,semester,courseCode;");
+						<?php		
 						$cnt=1;
 						$row=mysqli_fetch_array($sql);
 						$courseArray=array($row['courseCode']);
@@ -192,8 +204,13 @@
 						</tr>
 				</tbody>
 			</table>
+			
 		
 		<?php
+			}
+			else{
+				echo "No Records Found";
+			}
 		}
 		?>
 	

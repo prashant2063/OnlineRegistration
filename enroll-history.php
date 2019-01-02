@@ -8,7 +8,7 @@ header('location:index.php');
 }
 else{
     $now=time();
-  if($now > $_SESSION['expire']){
+	if($now > $_SESSION['expire']){
     
     date_default_timezone_set('Asia/Kolkata');
     $ldate = date( 'Y-m-d h:i:s', time () );

@@ -60,7 +60,7 @@
 								<div class="form-group">
 									<select class="form-control" name="select_two" id="enrollment_type" required="required">
 										<option value="regular">Regular</option>
-										<option value="suplementary">Supplymentary</option>
+										<option value="supplementary">Supplementary</option>
 										<option value="improvement">Improvement</option>
 									</select> 
 								</div>

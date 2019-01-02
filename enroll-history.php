@@ -39,13 +39,6 @@ else{
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
 
-<?php
-function myFunction() {
-    
- echo "hello"; 
-}?>
-
-
 <body>
 <?php include('includes/header.php');?>
     <!-- LOGO HEADER END-->
@@ -126,10 +119,6 @@ $cnt++;
                         </div>
 
                     </div>
-                    <form>
-<button onclick="myFunction()">Print this page</button>
-</form>
-
                      <!--  End  Bordered Table  -->
                 </div>
             </div>

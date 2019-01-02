@@ -10,7 +10,7 @@
 		if($num>0){
 
             $_SESSION['start']=time();
-            $_SESSION['expire']=$_SESSION['start']+(3600);
+            $_SESSION['expire']=$_SESSION['start']+(60);
 			$extra="my-profile.php";
 			$_SESSION['login']=$_POST['regno'];
 			$_SESSION['id']=$num['studentRegno'];

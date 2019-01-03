@@ -2,9 +2,15 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12">
-				<marquee style="font-size: 18px; color: black;">Online Registration Application developed by Arzoo (15MI524) and Prashant Gupta (15MI542) under the guidance of Dr. Siddhartha Chouhan.</marquee>
+                    <div style="font-size: 14px ;line-height:22px; color:black; text-align: center;" >
+National Institute of Technology, Hamirpur<br>
+Ministry of Human Resource Development,Government of India.<br>
+Copyright © 2019 - All Rights Reserved - NIT Hamirpur<br>
+
+                    </div>
                 </div>
 
             </div>
         </div>
-    </footer>
+    </footer
+	

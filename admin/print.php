@@ -99,8 +99,8 @@ else{
 <body>
     <div class="invoice-box">
 <?php
-$cid=intval($_GET['id']);
-$sql=mysqli_query($con,"select course.courseName as courname,course.courseCode as ccode,course.courseUnit as cunit,session.session as session,department.department as dept,courseenrolls.enrollDate as edate,semester.semester as sem ,students.studentName as studentname,students.studentPhoto as photo,students.cgpa as scgpa,students.StudentRegno as sregno,students.creationdate as studentregdate from courseenrolls join course on course.id=courseenrolls.course join session on session.id=courseenrolls.session join department on department.id=courseenrolls.department  join students on students.StudentRegno=courseenrolls.StudentRegno join semester on semester.id=courseenrolls.semester where courseenrolls.course='$cid'");
+//$cid=intval($_GET['id']);
+$sql=mysqli_query($con,"select courseenroll.courseName, courseenroll.courseCode, courseenroll.session, courseenroll.department, courseenroll.enrollDate, courseenroll.semester, students.studentName, students.studentPhoto, students.cgpa, students.studentRegNo, students.creationDate from courseenroll join students on students.StudentRegNo=courseenroll.StudentRegNo where courseenroll.courseCode='CSS-111';");
 $cnt=1;
 while($row=mysqli_fetch_array($sql))
 {?>
@@ -112,17 +112,17 @@ while($row=mysqli_fetch_array($sql))
                     <table>
                         <tr>
                             <td class="title">
-                                  <?php if($row['photo']==""){ ?>
+                                  <?php if($row['studentPhoto']==""){ ?>
    <img src="../studentphoto/noimage.png" width="200" height="200"><?php } else {?>
-   <img src="studentphoto/<?php echo htmlentities($row['photo']);?>" width="200" height="200">
+   <img src="../studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
    <?php } ?>
                             </td>
                             
                             <td>
-                               <b> Reg No: </b><?php echo htmlentities($row['sregno']);?><br>
-                               <b> Student Name: </b>  <?php echo htmlentities($row['studentname']);?><br>
-                               <b> Student Reg Date:</b> <?php echo htmlentities($row['studentregdate']);?><br>
-                                <b> Student Course Enroll Date:</b> <?php echo htmlentities($row['edate']);?><br>
+                               <b> Reg No: </b><?php echo htmlentities($row['studentRegNo']);?><br>
+                               <b> Student Name: </b>  <?php echo htmlentities($row['studentName']);?><br>
+                               <b> Student Reg Date:</b> <?php echo htmlentities($row['creationDate']);?><br>
+                                <b> Student Course Enroll Date:</b> <?php echo htmlentities($row['enrollDate']);?><br>
                             </td>
                         </tr>
                     </table>
@@ -145,7 +145,7 @@ while($row=mysqli_fetch_array($sql))
                 </td>
                 
                 <td>
-                  <?php echo htmlentities($row['ccode']);?>
+                  <?php echo htmlentities($row['courseCode']);?>
                 </td>
             </tr>
 
@@ -155,7 +155,7 @@ while($row=mysqli_fetch_array($sql))
                 </td>
                 
                 <td>
-                  <?php echo htmlentities($row['courname']);?>
+                  <?php echo htmlentities($row['courseName']);?>
                 </td>
             </tr>
 
@@ -166,7 +166,7 @@ while($row=mysqli_fetch_array($sql))
                 </td>
                 
                 <td>
-                  <?php echo htmlentities($row['cunit']);?>
+                  <?php echo "cunit";?>
                 </td>
             </tr>
             
@@ -196,7 +196,7 @@ while($row=mysqli_fetch_array($sql))
                 </td>
                 
                 <td>
-                   <?php echo htmlentities($row['dept']);?>
+                   <?php echo htmlentities($row['department']);?>
                 </td>
             </tr>
  
@@ -213,7 +213,7 @@ while($row=mysqli_fetch_array($sql))
                 </td>
                 
                 <td>
-                     <?php echo htmlentities($row['sem']);?>
+                     <?php echo htmlentities($row['semester']);?>
                 </td>
             </tr>
             

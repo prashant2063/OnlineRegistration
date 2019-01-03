@@ -1,7 +1,7 @@
 <?php
 session_start();
 include('includes/config.php');
-error_reporting(0);
+//error_reporting(0);
 if(strlen($_SESSION['login'])==0)
     {   
 header('location:index.php');
@@ -15,7 +15,9 @@ else{
 <head>
     <meta charset="utf-8">
     <title>Course Enrollment Print</title>
-    
+    <link href="assets/css/bootstrap.css" rel="stylesheet" />
+    <link href="assets/css/font-awesome.css" rel="stylesheet" />
+    <link href="assets/css/style.css" rel="stylesheet" />
     <style>
     .invoice-box{
         max-width:800px;
@@ -80,7 +82,11 @@ else{
         border-top:2px solid #eee;
         font-weight:bold;
     }
-    
+	@media print{
+		.hideit {
+			display :  none;
+		}
+	}
     @media only screen and (max-width: 600px) {
         .invoice-box table tr.top table td{
             width:100%;
@@ -94,129 +100,137 @@ else{
             text-align:center;
         }
     }
+	
+		
+	
     </style>
 </head>
 
 <body>
     <div class="invoice-box">
-<?php
-$cid=intval($_GET['id']);
-$sql=mysqli_query($con,"select course.courseName as courname,course.courseCode as ccode,course.courseUnit as cunit,session.session as session,department.department as dept,courseenrolls.enrollDate as edate,semester.semester as sem ,students.studentName as studentname,students.studentPhoto as photo,students.cgpa as scgpa,students.creationdate as studentregdate from courseenrolls join course on course.id=courseenrolls.course join session on session.id=courseenrolls.session join department on department.id=courseenrolls.department  join students on students.StudentRegno=courseenrolls.StudentRegno join semester on semester.id=courseenrolls.semester where courseenrolls.studentRegno='".$_SESSION['login']."' and courseenrolls.course='$cid'");
-$cnt=1;
-while($row=mysqli_fetch_array($sql))
-{?>
+	<div style="margin-bottom:20px;">
+		<div class="navbar navbar-inverse set-radius-zero" style="display:block;">
+			<div class="container">
+				<div class="navbar-header" style="display:block;">
+						<img style="width: 70%; padding: 10px 0" src="studentphoto/newlogo.png" style="display:block;"> 
+				</div>
+			</div>
+		</div>
+	</div>
+		<?php
+		$str=$_GET['id'];
+		$data=explode('|',$str);
+		$sql=mysqli_query($con,"select courseenroll.department, students.studentName, students.studentPhoto, students.guardianName, students.studentMobile, students.studentEmail, students.cgpa, students.correspondenceAddress,students.permanentAddress, students.creationDate from courseenroll join students on students.StudentRegNo=courseenroll.StudentRegno where courseenroll.studentRegNo='".$_SESSION['login']."' limit 1;");
+		//$cnt=1;
+		$row=mysqli_fetch_array($sql);?>
+		<table style="margin-bottom:20px;border:solid black 1px;">
+			<tr>
+				<th>Semester</th>
+				<td style="text-align:left"><?php echo $data[0];?></td>
+				<th>Session</th>
+				<td style="text-align:left"><?php echo $data[1];?></td>
+			</tr>
+		</table>
+		<div style="float:right;padding-right:10px;">
+			<?php if($row['studentPhoto']==""){ ?>
+				<img src="studentphoto/noimage.png" width="200" height="200" ><?php } else {?>
+				<img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
+			<?php } ?>
+		</div>
+		<div style="width:70%;">
+			<table>
+				<tr class="details">
+					<th>Roll Number</th>
+					<td style="text-align:left"><?php echo $_SESSION['login'];?></td>
+				</tr>
+				<tr class="details">
+					<th>Name</th>
+					<td style="text-align:left"><?php echo $row['studentName'];?></td>
+				</tr>
+				<tr class="details">
+					<th>Father/Guardian Name</th>
+					<td style="text-align:left"><?php echo $row['guardianName'];?></td>
+				</tr>
+				<tr class="details">
+					<th>CGPA</th>
+					<td style="text-align:left"><?php echo $row['cgpa'];?></td>
+				</tr>
+				<tr class="details">
+					<th>Department</th>
+					<td style="text-align:left"><?php echo $row['department'];?></td>
+				</tr>
+				<tr class="details">
+					<th>Phone</th>
+					<td style="text-align:left"><?php echo $row['studentMobile'];?></td>
+				</tr>
+				<tr class="details">
+					<th>Email</th>
+					<td style="text-align:left"><?php echo $row['studentEmail'];?></td>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div style="width:100%;">
+			<div style="width:48%;float:right;">
+				<table>
+					<tr class="heading"><td>Permanent Address</td></tr>
+					<tr class="details"><td><?php echo $row['permanentAddress'];?></td></tr>
+				</table>
+			</div>
+			<div style="width:48%;">
+				<table>
+					<tr class="heading"><td>Correespondance Address</td></tr>
+					<tr class="details"><td><?php echo $row['correspondenceAddress'];?></td></tr>
+				</table>
+			</div>
+		</div>
+		<br>
+		
+		
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				Courses Enrolled
+			</div>
+			<div class="panel-body">
+				<div class="table-responsive table-bordered">
+					<table class="table">
+						<tr>
+							<th>#</th>
+							<th>Course Code</th>
+							<th>Course Name</th>
+							<th>Leture</th>
+							<th>Tutorial</th>
+							<th>Practical</th>
+							<th>Credit</th>
+						</tr>
+						<?php
+							$cnt=1;
+							$sql=mysqli_query($con,"select courseenroll.courseCode, courseenroll.courseName, course.lecture, course.tutorial, course.practical, course.credit from courseenroll join course on courseenroll.courseCode=course.courseCode where courseenroll.studentRegNo='".$_SESSION['login']."' and courseenroll.semester='$data[0]' and courseenroll.session='$data[1]' and courseenroll.applyfor='$data[2]';");
+							while($row=mysqli_fetch_array($sql)){?>
+								<tr>
+									<td><?php echo $cnt?></td>
+									<td><?php echo $row['courseCode'];?></td>
+									<td><?php echo $row['courseName'];?></td>
+									<td><?php echo $row['lecture'];?></td>
+									<td><?php echo $row['tutorial'];?></td>
+									<td><?php echo $row['practical'];?></td>
+									<td><?php echo $row['credit'];?></td>
+								</tr>						
+							<?php
+								$cnt++;
+							}
+						?>
+					</table>
+				</div>
+			</div>
+		</div>
+			
+			
+	   
 
-
-        <table cellpadding="0" cellspacing="0">
-            <tr class="top">
-                <td colspan="2">
-                    <table>
-                        <tr>
-                            <td class="title">
-                                  <?php if($row['photo']==""){ ?>
-   <img src="studentphoto/noimage.png" width="200" height="200"><?php } else {?>
-   <img src="studentphoto/<?php echo htmlentities($row['photo']);?>" width="200" height="200">
-   <?php } ?>
-                            </td>
-                            
-                            <td>
-                               <b> Reg No: </b><?php echo htmlentities($_SESSION['login']);?><br>
-                               <b> Student Name: </b>  <?php echo htmlentities($row['studentname']);?><br>
-                               <b> Student Reg Date:</b> <?php echo htmlentities($row['studentregdate']);?><br>
-                                <b> Student Course Enroll Date:</b> <?php echo htmlentities($row['edate']);?><br>
-                            </td>
-                        </tr>
-                    </table>
-                </td>
-            </tr>
-      
-            <tr class="heading">
-                <td>
-                   Course Details
-                </td>
-                
-                <td>
-                   
-                </td>
-            </tr>
-            
-            <tr class="details">
-                <td>
-                  Course Code
-                </td>
-                
-                <td>
-                  <?php echo htmlentities($row['ccode']);?>
-                </td>
-            </tr>
-
-            <tr class="details">
-                <td>
-                  Course Name
-                </td>
-                
-                <td>
-                  <?php echo htmlentities($row['courname']);?>
-                </td>
-            </tr>
-
-
-            <tr class="details">
-                <td>
-                  Course Credit
-                </td>
-                
-                <td>
-                  <?php echo htmlentities($row['cunit']);?>
-                </td>
-            </tr>
-            
-            <tr class="heading">
-                <td>
-                   Other Details
-                </td>
-                
-                <td>
-                   
-                </td>
-            </tr>
-            
-            <tr class="item">
-                <td>
-                     Session
-                </td>
-                
-                <td>
-                    <?php echo htmlentities($row['session']);?>
-                </td>
-            </tr>
-            
-            <tr class="item">
-                <td>
-                   Department
-                </td>
-                
-                <td>
-                   <?php echo htmlentities($row['dept']);?>
-                </td>
-            </tr>
-
-               
-            
-            <tr class="item last">
-                <td>
-                   Semester
-                </td>
-                
-                <td>
-                     <?php echo htmlentities($row['sem']);?>
-                </td>
-            </tr>
-            
-         
-        </table>
-        <?php } ?>
-    </div>
-</body>
-</html>
+	  <button class="btn btn-primary hideit" onClick="window.print();"><i class="fa fa-print "></i> Print</button> 
+	</div>
+	</body>
+	</html>
 <?php } ?>

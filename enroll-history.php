@@ -58,6 +58,7 @@ else{
                 <div class="col-md-12">
 					<div class="form-group">
 									<select class="form-control" name="select_two" id="enrollment_type" onChange="get_table()" required="required">
+										<option value="">--SELECT--</option>
 										<option value="regular">Regular</option>
 										<option value="supplementary">Supplyrmentary</option>
 										<option value="improvement">Improvement</option>
@@ -73,49 +74,46 @@ else{
                         <div class="panel-body">
                             <div class="table-responsive table-bordered">
                                 <table class="table" id="my_table">
-                                    <thead>
+                                    <!--thead>
                                         <tr>
                                             <th>#</th>
 											<th>Course Code </th>
                                             <th>Course Name </th>
                                             <th>Session </th>
-                                            <!--th> Department</th-->
-											<th>Semester</th>
+                                 			<th>Semester</th>
                                              <th>Enrollment Date</th>
-                                             <!--th>Action</th-->
-                                        </tr>
+                                             </tr>
                                     </thead>
                                     <tbody>
 <?php
-$sql=mysqli_query($con,"select * from courseenroll where StudentRegNo='".$_SESSION['login']."'");
-$cnt=1;
-while($row=mysqli_fetch_array($sql))
+//$sql=mysqli_query($con,"select * from courseenroll where StudentRegNo='".$_SESSION['login']."'");
+//$cnt=1;
+//while($row=mysqli_fetch_array($sql))
 {
 ?>
 
 
                                         <tr>
-                                            <td><?php echo $cnt;?></td>
-											<td><?php echo htmlentities($row['courseCode']);?></td>
-                                            <td><?php echo htmlentities($row['courseName']);?></td>
-                                            <td><?php echo htmlentities($row['session']);?></td>
-                                            <!--td><//?php echo htmlentities($row['department']);?></td-->
-                                            <td><?php echo htmlentities($row['semester']);?></td>
-                                             <td><?php echo htmlentities($row['enrollDate']);?></td>
+                                            <td><?php //echo $cnt;?></td>
+											<td><?php //echo htmlentities($row['courseCode']);?></td>
+                                            <td><?php //echo htmlentities($row['courseName']);?></td>
+                                            <td><?php //echo htmlentities($row['session']);?></td>
+                                            <td><?php //echo htmlentities($row['semester']);?></td>
+                                            <td><?php //echo htmlentities($row['enrollDate']);?></td>
                                             <!--td>
-                                            <a href="print.php?id=<?php echo $row['cid']?>" target="_blank">
+                                            <a href="print.php?id=<?php //echo $row['cid']?>" target="_blank">
 <button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>                                        
 
 
                                             </td-->
-                                        </tr>
+                                        <!--/tr>
 <?php 
-$cnt++;
+//$cnt++;
 } ?>
 
 
                                         
-                                    </tbody>
+                                    </tbody-->
                                 </table>
 
                             </div>
@@ -134,6 +132,7 @@ $cnt++;
 
         </div>
     </div>
+	<!--a href="print.php"><button>Print</button></a-->
     <!-- CONTENT-WRAPPER SECTION END-->
   <?php include('includes/footer.php');?>
     <!-- FOOTER SECTION END-->

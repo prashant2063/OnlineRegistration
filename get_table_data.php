@@ -19,8 +19,9 @@
 		<?php
 			$enrollment_type=$_GET['enrollment_type'];
 			//echo $enrollment_type;
-			$sql=mysqli_query($con,"select studentRegNo, courseenroll.courseCode, courseenroll.courseName, lecture, tutorial, practical, credit, session, courseenroll.semester from courseenroll left join course on courseenroll.courseCode=course.courseCode where studentRegNo='$select_two' and applyfor='$enrollment_type' order by session,semester;");
-			if(mysqli_num_rows($sql) > 0){$row=mysqli_fetch_array($sql);
+			$sql=mysqli_query($con,"select studentRegNo, courseenroll.courseCode, courseenroll.courseName, lecture, tutorial, practical, credit, session, courseenroll.semester from courseenroll left join course on courseenroll.courseCode=course.courseCode where studentRegNo='".$_SESSION['login']."' and applyfor='$enrollment_type' order by session,semester;");
+			if(mysqli_num_rows($sql) > 0){
+				$row=mysqli_fetch_array($sql);
 				$current_session=$row['session'];
 				$current_semester=$row['semester'];
 				$cnt=1;
@@ -56,6 +57,9 @@
 					else{
 		?>
 				</tbody>
+				<a href="print.php?id=<?php echo $current_semester.'|'.$current_session.'|'.$enrollment_type;?>" target="_blank">
+					<button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>
+					<br>
 				</table>
 		<?php 
 						$cnt=1;
@@ -84,6 +88,8 @@
 				}
 		?>
 				</tbody>
+				<a href="print.php?id=<?php echo $current_semester.'|'.$current_session.'|'.$enrollment_type;?>" target="_blank">
+					<button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>
 				</table>
 	<?php
 			}

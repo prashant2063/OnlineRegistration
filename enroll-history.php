@@ -8,7 +8,7 @@ header('location:index.php');
 }
 else{
     $now=time();
-  if($now > $_SESSION['expire']){
+	if($now > $_SESSION['expire']){
     
     date_default_timezone_set('Asia/Kolkata');
     $ldate = date( 'Y-m-d h:i:s', time () );
@@ -38,13 +38,6 @@ else{
     <link href="assets/css/font-awesome.css" rel="stylesheet" />
     <link href="assets/css/style.css" rel="stylesheet" />
 </head>
-
-<?php
-function myFunction() {
-    
- echo "hello"; 
-}?>
-
 
 <body>
 <?php include('includes/header.php');?>
@@ -126,10 +119,6 @@ $cnt++;
                         </div>
 
                     </div>
-                    <form>
-<button onclick="myFunction()">Print this page</button>
-</form>
-
                      <!--  End  Bordered Table  -->
                 </div>
             </div>

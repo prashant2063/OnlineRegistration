@@ -125,16 +125,15 @@ while($row1=mysqli_fetch_array($sql))
  <?php } ?>
 
 <div class="form-group">
-    <label for="Session">Session  </label>
+	<label for="Session">Session  </label>
     <select class="form-control" name="session" required="required">
-   <option value="">Select Session</option>   
-   <?php 
-$sql=mysqli_query($con,"select * from session");
-while($row=mysqli_fetch_array($sql))
-{
-?>
-<option value="<?php echo htmlentities($row['session']);?>"><?php echo htmlentities($row['session']);?></option>
-<?php } ?>
+		<option value="">Select Session</option>   
+		<?php 
+			$sql=mysqli_query($con,"select * from session");
+			while($row=mysqli_fetch_array($sql)){
+		?>
+		<option value="<?php echo htmlentities($row['session']);?>"><?php echo htmlentities($row['session']);?></option>
+		<?php } ?>
 
     </select> 
   </div> 

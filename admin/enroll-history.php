@@ -57,14 +57,15 @@
 							<!-- /.panel-heading -->
 							<div class="panel-body">
 							<form>
-								<div class="form-group">
+								<div class="form-group col-sm-4">		
 									<select class="form-control" name="select_two" id="enrollment_type" required="required">
 										<option value="regular">Regular</option>
 										<option value="supplementary">Supplementary</option>
 										<option value="improvement">Improvement</option>
 									</select> 
+									
 								</div>
-								<div class="form-group">
+								<div class="form-group col-sm-4">
 									<select class="form-control" id="select_one" name="select_one" onChange="get_select_two()" required="required">
 										<option value="">--SELECT FILTER--</option>
 										<option value="student_wise">Student-Wise</option>
@@ -72,7 +73,7 @@
 										<option value="department_wise">Department-Wise</option>
 									</select> 
 								</div>
-								<div class="form-group" id="select_two">
+								<div class="form-group col-sm-4" id="select_two">
 									<select class="form-control" name="select_two" required="required">
 										<option value="">--SELECT VALUE--</option>
 									</select> 

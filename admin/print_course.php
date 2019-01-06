@@ -2,7 +2,7 @@
 session_start();
 include('includes/config.php');
 //error_reporting(0);
-if(strlen($_SESSION['login'])==0){   
+if(strlen($_SESSION['alogin'])==0){   
 	header('location:index.php');
 }
 else{
@@ -119,102 +119,80 @@ else{
 		<?php
 		$str=$_GET['id'];
 		$data=explode('|',$str);
-		$sql=mysqli_query($con,"select courseenroll.department, students.studentName, students.studentPhoto, students.guardianName, students.studentMobile, students.studentEmail, students.cgpa, students.correspondenceAddress,students.permanentAddress, students.creationDate from courseenroll join students on students.StudentRegNo=courseenroll.StudentRegno where courseenroll.studentRegNo='".$_SESSION['login']."' limit 1;");
+		$sql=mysqli_query($con,"select courseCode, courseName, department, semester, lecture, tutorial, practical, credit from course where courseCode='$data[2]';");
 		//$cnt=1;
 		$row=mysqli_fetch_array($sql);?>
 		<table style="margin-bottom:20px;border:solid black 1px;">
 			<tr>
-				<th>Semester</th>
-				<td style="text-align:left"><?php echo $data[0];?></td>
 				<th>Session</th>
-				<td style="text-align:left"><?php echo $data[1];?></td>
+				<td style="text-align:left"><?php echo $data[0];?></td>
 			</tr>
 		</table>
-		<div style="float:right;padding-right:10px;">
-			<?php if($row['studentPhoto']==""){ ?>
-				<img src="studentphoto/noimage.png" width="200" height="200" ><?php } else {?>
-				<img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
-			<?php } ?>
-		</div>
-		<div style="width:70%;">
+			
 			<table>
 				<tr class="details">
-					<th>Roll Number</th>
-					<td style="text-align:left"><?php echo $_SESSION['login'];?></td>
+					<th>Course Code</th>
+					<td style="text-align:left"><?php echo $row['courseCode'];?></td>
 				</tr>
 				<tr class="details">
-					<th>Name</th>
-					<td style="text-align:left"><?php echo $row['studentName'];?></td>
-				</tr>
-				<tr class="details">
-					<th>Father/Guardian Name</th>
-					<td style="text-align:left"><?php echo $row['guardianName'];?></td>
-				</tr>
-				<tr class="details">
-					<th>CGPA</th>
-					<td style="text-align:left"><?php echo $row['cgpa'];?></td>
+					<th>Course Name</th>
+					<td style="text-align:left"><?php echo $row['courseName'];?></td>
 				</tr>
 				<tr class="details">
 					<th>Department</th>
 					<td style="text-align:left"><?php echo $row['department'];?></td>
 				</tr>
 				<tr class="details">
-					<th>Phone</th>
-					<td style="text-align:left"><?php echo $row['studentMobile'];?></td>
-				</tr>
-				<tr class="details">
-					<th>Email</th>
-					<td style="text-align:left"><?php echo $row['studentEmail'];?></td>
+					<th>Semester</th>
+					<td style="text-align:left"><?php echo $row['semester'];?></td>
 				</tr>
 			</table>
-		</div>
+			<br>
+			<table style="border:solid 1px;">	
+				<tr class="heading" style="border:solid 1px;";>
+					<th style="border:solid 1px;text-align:center">Lecture</th>
+					<th style="border:solid 1px;text-align:center">Tutorial</th>
+					<th style="border:solid 1px;text-align:center">Practical</th>
+					<th style="border:solid 1px;text-align:center">Credit</th>
+				</tr>
+				<tr class="details">
+					<td style="border:solid 1px;text-align:center"><?php echo $row['lecture'];?></td>
+					<td style="border:solid 1px;text-align:center"><?php echo $row['tutorial'];?></td>
+					<td style="border:solid 1px;text-align:center"><?php echo $row['practical'];?></td>
+					<td style="border:solid 1px;text-align:center"><?php echo $row['credit'];?></td>
+				</tr>
+			</table>
 		<br>
-		<div style="width:100%;">
-			<div style="width:48%;float:right;">
-				<table>
-					<tr class="heading"><td>Permanent Address</td></tr>
-					<tr class="details"><td><?php echo $row['permanentAddress'];?></td></tr>
-				</table>
-			</div>
-			<div style="width:48%;">
-				<table>
-					<tr class="heading"><td>Correespondance Address</td></tr>
-					<tr class="details"><td><?php echo $row['correspondenceAddress'];?></td></tr>
-				</table>
-			</div>
-		</div>
-		<br>
-		
-		
+		<br>		
 		
 		<div class="panel panel-default">
 			<div class="panel-heading">
-				Courses Enrolled
+				Students Enrolled
 			</div>
 			<div class="panel-body">
 				<div class="table-responsive table-bordered">
-					<table class="table">
+					<table class="table" >
 						<tr>
 							<th>#</th>
-							<th>Course Code</th>
-							<th>Course Name</th>
-							<th>Leture</th>
-							<th>Tutorial</th>
-							<th>Practical</th>
-							<th>Credit</th>
+							<th>Roll No</th>
+							<th>Name</th>
+							<th>CGPA</th>
+							<th>Phone</th>
+							<th>Email</th>
+							<th>Enroll Date</th>
 						</tr>
 						<?php
 							$cnt=1;
-							$sql=mysqli_query($con,"select courseenroll.courseCode, courseenroll.courseName, course.lecture, course.tutorial, course.practical, course.credit from courseenroll join course on courseenroll.courseCode=course.courseCode where courseenroll.studentRegNo='".$_SESSION['login']."' and courseenroll.semester='$data[0]' and courseenroll.session='$data[1]' and courseenroll.applyfor='$data[2]';");
+							$sql=mysqli_query($con,"select students.studentRegNo, students.studentName, students.cgpa, students.studentMobile, students.studentEmail, courseenroll.enrollDate from courseenroll join students on courseenroll.studentRegNo=students.studentRegNo where courseenroll.courseCode='$data[2]' and courseenroll.applyfor='$data[1]' and courseenroll.session='$data[0]';");
 							while($row=mysqli_fetch_array($sql)){?>
 								<tr>
-									<td><?php echo $cnt?></td>
-									<td><?php echo $row['courseCode'];?></td>
-									<td><?php echo $row['courseName'];?></td>
-									<td><?php echo $row['lecture'];?></td>
-									<td><?php echo $row['tutorial'];?></td>
-									<td><?php echo $row['practical'];?></td>
-									<td><?php echo $row['credit'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $cnt?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['studentRegNo'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['studentName'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['cgpa'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['studentMobile'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['studentEmail'];?></td>
+									<td style="overflow-wrap: break-word;"><?php echo $row['enrollDate'];?></td>
 								</tr>						
 							<?php
 								$cnt++;

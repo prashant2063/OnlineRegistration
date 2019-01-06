@@ -16,6 +16,7 @@
 		<link href="assets/css/style.css" rel="stylesheet" />
 	</head>
 	<body>
+		<div class="form-group" id="select_two">
 		<?php
 			$choice=$_GET['select_one'];
 			echo "<select class='form-group' id='select_two_dd' onChange='get_table()'>";

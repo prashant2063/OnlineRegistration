@@ -47,16 +47,7 @@
 						<h1 class="page-head-line">Enroll History  </h1>
 					</div>
 				</div>
-				<div class="row" >
-					<div class="col-md-12">
-						<!--    Bordered Table  -->
-						<div class="panel panel-default">
-							<div class="panel-heading">
-							   Enroll History
-							</div>
-							<!-- /.panel-heading -->
-							<div class="panel-body",>
-							<form>
+				<form>
 
 								<div class="form-group col-sm-4">		
 									<select class="form-control" name="select_two" id="enrollment_type" required="required">
@@ -73,19 +64,28 @@
 										<option value="course_wise">Course-Wise</option>
 										<option value="department_wise">Department-Wise</option>
 									</select> 
-									</div>
-								
 								</div>
-
+								
 								<div class="form-group col-sm-4" id="select_two">
 									<select class="form-control" name="select_two" required="required">
 										<option value="">--SELECT VALUE--</option>
 									</select> 
 								
-							</div>
 								</div>
+								
 							</form>	
+				<div class="row" >
+					<div class="col-md-12">
+					
+						<!--    Bordered Table  -->
+						<div class="panel panel-default">
+							<div class="panel-heading">
+							   Enroll History
 							</div>
+							<!-- /.panel-heading -->
+							<div class="panel-body",>
+							
+			
 
 								<div class="table-responsive table-bordered">
 									<table class="table" id="my_table">

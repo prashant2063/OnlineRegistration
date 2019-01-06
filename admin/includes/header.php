@@ -27,7 +27,7 @@ include("includes/config.php");
         <div class="container">
             <div class="navbar-header">
                 <a href="http://www.nith.ac.in" style="color:#FFF; font-size: 40px;">
-                    <img style="width: 70%; padding: 10px 0" src="studentphoto/nit.jpg"> 
+                    <img style="width: 70%; padding: 10px 0" src="../studentphoto/newlogo.png"> 
                 </a>
             </div>
         </div>

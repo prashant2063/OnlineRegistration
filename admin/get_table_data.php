@@ -45,11 +45,17 @@
 				$current_semester=$row['semester'];
 				$cnt=1;
 				echo "Semester: ".$current_semester;	echo "Session: ".$current_session;
+
+				
 		?>
-				<?php ?>
+
 				<table class="table">
 				<thead>		
-					<tr>
+					
+				</thead>
+				<tbody>
+					<thead>
+						<tr>
 						<th>#</th>
 						<th>Course Code</th>
 						<th>Course Name</th>
@@ -58,8 +64,7 @@
 						<th>Practical</th>
 						<th>Credit</th>
 					</tr>
-				</thead>
-				<tbody>
+					</thead>
 				<tr>
 							<td><?php echo $cnt;?></td>
 							<td><?php echo $row['courseCode'];?></td>

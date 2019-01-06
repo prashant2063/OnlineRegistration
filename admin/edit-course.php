@@ -158,7 +158,7 @@ while($curr=mysqli_fetch_array($sql))
   </div>
 
 <?php } ?>
- <button type="submit" name="submit" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</button>
+ <center><button type="submit" name="submit" class="btn btn-default"><i class=" fa fa-refresh "></i> Update</button></center>
 </form>
                             </div>
                             </div>

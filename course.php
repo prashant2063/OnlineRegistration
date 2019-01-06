@@ -129,7 +129,7 @@ if(isset($_GET['del']))
     <input type="text" class="form-control" id="practical" name="practical" placeholder="Practicals" required />
   </div> 
 
- <button type="submit" name="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

@@ -60,7 +60,7 @@ else{
 									<select class="form-control" name="select_two" id="enrollment_type" onChange="get_table()" required="required">
 										<option value="">--SELECT--</option>
 										<option value="regular">Regular</option>
-										<option value="supplementary">Supplyrmentary</option>
+										<option value="supplementary">Supplementary</option>
 										<option value="improvement">Improvement</option>
 									</select> 
 					</div>

@@ -35,7 +35,7 @@ $correspondenceaddress=$_POST['correspondenceaddress'];
 if($photo!=""){
 	$ret=mysqli_query($con,"select studentPhoto from students where StudentRegNo='".$_SESSION['login']."';");
 	$row=mysqli_fetch_array($ret);
-	unlink("studentphoto/".$row[studentPhoto]);
+	unlink("studentphoto/".$row['studentPhoto']);
 	move_uploaded_file($_FILES["photo"]["tmp_name"],"studentphoto/".$_FILES["photo"]["name"]);
 	$ret=mysqli_query($con,"update students set studentPhoto='$photo', guardianName='$guardianname', studentEmail='$studentemail', studentMobile='$studentmobile', permanentAddress='$permanentaddress', correspondenceAddress='$correspondenceaddress' where StudentRegNo='".$_SESSION['login']."'");
 }

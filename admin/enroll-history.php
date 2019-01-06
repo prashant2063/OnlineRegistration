@@ -55,8 +55,9 @@
 							   Enroll History
 							</div>
 							<!-- /.panel-heading -->
-							<div class="panel-body">
+							<div class="panel-body",>
 							<form>
+
 								<div class="form-group col-sm-4">		
 									<select class="form-control" name="select_two" id="enrollment_type" required="required">
 										<option value="regular">Regular</option>
@@ -69,17 +70,23 @@
 									<select class="form-control" id="select_one" name="select_one" onChange="get_select_two()" required="required">
 										<option value="">--SELECT FILTER--</option>
 										<option value="student_wise">Student-Wise</option>
-										<option value="course_wise">Couse-Wise</option>
+										<option value="course_wise">Course-Wise</option>
 										<option value="department_wise">Department-Wise</option>
 									</select> 
+									</div>
+								
 								</div>
+
 								<div class="form-group col-sm-4" id="select_two">
 									<select class="form-control" name="select_two" required="required">
 										<option value="">--SELECT VALUE--</option>
 									</select> 
-								</div>
 								
-							</form>
+							</div>
+								</div>
+							</form>	
+							</div>
+
 								<div class="table-responsive table-bordered">
 									<table class="table" id="my_table">
 										<thead>

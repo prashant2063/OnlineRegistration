@@ -126,7 +126,7 @@ return true;
     <input type="password" class="form-control" id="exampleInputPassword3" name="cnfpass" placeholder="Password" />
   </div>
  
-  <button type="submit" name="submit" class="btn btn-default">Submit</button>
+  <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
                            <hr />
    
 

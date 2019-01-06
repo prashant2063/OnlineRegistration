@@ -15,6 +15,7 @@
 		<link href="assets/css/font-awesome.css" rel="stylesheet" />
 		<link href="assets/css/style.css" rel="stylesheet" />
 	</head>
+	
 	<body>
 		<?php
 			$enrollment_type=$_GET['enrollment_type'];
@@ -28,7 +29,7 @@
 				echo "Semester: ".$current_semester;	echo "Session: ".$current_session;
 		?>
 				<?php ?>
-				<table class="table">
+				<table class="table" >
 				<thead>		
 					<tr>
 						<th>#</th>
@@ -59,7 +60,7 @@
 				</tbody>
 				</table>
 				<a href="print.php?id=<?php echo $current_semester.'|'.$current_session.'|'.$enrollment_type;?>" target="_blank">
-					<button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>
+					<center><button class="btn btn-primary"><i class="fa fa-print "></i> Print</button></center> </a>
 					<br>
 		<?php 
 						$cnt=1;

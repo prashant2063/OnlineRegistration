@@ -246,7 +246,6 @@
 					</thead>
 					<tbody>
 						<?php		
-
 							//echo implode(',', $courseArray);
 							//echo $current_student;
 							//echo $current_session;

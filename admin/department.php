@@ -74,7 +74,7 @@
     <label for="department">Add Department  </label>
     <input type="text" class="form-control" id="department" name="department" placeholder="Department" required />
   </div>
- <button type="submit" name="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

@@ -72,7 +72,7 @@
     <label for="semester">Add Semester  </label>
     <input type="text" class="form-control" id="semester" name="semester" placeholder="Semester" required />
   </div>
- <button type="submit" name="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

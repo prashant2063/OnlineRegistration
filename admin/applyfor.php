@@ -72,7 +72,7 @@
     <label for="applyfor">New Field</label>
     <input type="text" class="form-control" id="applyfor" name="applyfor" placeholder="Apply For" />
   </div>
- <button type="submit" name="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

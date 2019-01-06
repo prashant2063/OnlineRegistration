@@ -95,7 +95,7 @@ while($row=mysqli_fetch_array($sql))
     </select> 
   </div>  
   
- <button type="submit" name="submit" id="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" id="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

@@ -84,7 +84,7 @@
 	<option value="Even">Even</option>
 	</select>
   </div>
- <button type="submit" name="submit" class="btn btn-default">Submit</button>
+ <center><button type="submit" name="submit" class="btn btn-default">Submit</button></center>
 </form>
                             </div>
                             </div>

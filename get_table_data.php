@@ -60,7 +60,7 @@
 				</tbody>
 				</table>
 				<a href="print.php?id=<?php echo $current_semester.'|'.$current_session.'|'.$enrollment_type;?>" target="_blank">
-					<center><button class="btn btn-primary"><i class="fa fa-print "></i> Print</button></center> </a>
+					<button class="btn btn-primary"><i class="fa fa-print "></i> Print</button> </a>
 					<br>
 		<?php 
 						$cnt=1;

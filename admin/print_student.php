@@ -2,7 +2,7 @@
 session_start();
 include('includes/config.php');
 //error_reporting(0);
-if(strlen($_SESSION['login'])==0){   
+if(strlen($_SESSION['alogin'])==0){   
 	header('location:index.php');
 }
 else{
@@ -119,7 +119,7 @@ else{
 		<?php
 		$str=$_GET['id'];
 		$data=explode('|',$str);
-		$sql=mysqli_query($con,"select courseenroll.department, students.studentName, students.studentPhoto, students.guardianName, students.studentMobile, students.studentEmail, students.cgpa, students.correspondenceAddress,students.permanentAddress, students.creationDate from courseenroll join students on students.StudentRegNo=courseenroll.StudentRegno where courseenroll.studentRegNo='".$_SESSION['login']."' limit 1;");
+		$sql=mysqli_query($con,"select courseenroll.department, students.studentName, students.studentPhoto, students.guardianName, students.studentMobile, students.studentEmail, students.cgpa, students.correspondenceAddress,students.permanentAddress, students.creationDate from courseenroll join students on students.StudentRegNo=courseenroll.StudentRegno where courseenroll.studentRegNo='$data[3]' limit 1;");
 		//$cnt=1;
 		$row=mysqli_fetch_array($sql);?>
 		<table style="margin-bottom:20px;border:solid black 1px;">
@@ -132,15 +132,15 @@ else{
 		</table>
 		<div style="float:right;padding-right:10px;">
 			<?php if($row['studentPhoto']==""){ ?>
-				<img src="studentphoto/noimage.png" width="200" height="200" ><?php } else {?>
-				<img src="studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
+				<img src="../studentphoto/noimage.png" width="200" height="200" ><?php } else {?>
+				<img src="../studentphoto/<?php echo htmlentities($row['studentPhoto']);?>" width="200" height="200">
 			<?php } ?>
 		</div>
 		<div style="width:70%;">
 			<table>
 				<tr class="details">
 					<th>Roll Number</th>
-					<td style="text-align:left"><?php echo $_SESSION['login'];?></td>
+					<td style="text-align:left"><?php echo $data[3];?></td>
 				</tr>
 				<tr class="details">
 					<th>Name</th>
@@ -205,7 +205,7 @@ else{
 						</tr>
 						<?php
 							$cnt=1;
-							$sql=mysqli_query($con,"select courseenroll.courseCode, courseenroll.courseName, course.lecture, course.tutorial, course.practical, course.credit from courseenroll join course on courseenroll.courseCode=course.courseCode where courseenroll.studentRegNo='".$_SESSION['login']."' and courseenroll.semester='$data[0]' and courseenroll.session='$data[1]' and courseenroll.applyfor='$data[2]';");
+							$sql=mysqli_query($con,"select courseenroll.courseCode, courseenroll.courseName, course.lecture, course.tutorial, course.practical, course.credit from courseenroll join course on courseenroll.courseCode=course.courseCode where courseenroll.studentRegNo='$data[3]' and courseenroll.semester='$data[0]' and courseenroll.session='$data[1]' and courseenroll.applyfor='$data[2]';");
 							while($row=mysqli_fetch_array($sql)){?>
 								<tr>
 									<td><?php echo $cnt?></td>

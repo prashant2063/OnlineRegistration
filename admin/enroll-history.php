@@ -29,6 +29,8 @@
         .receipt_photu:hover {
           box-shadow: 0 0 2px 1px rgba(0, 140, 186, 0.5);
         }
+        tr:nth-child(even) {background-color: #f2f2f2;}
+
 		</style>
 	</head>
 
